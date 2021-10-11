@@ -1,8 +1,9 @@
+import FilmCard from "pages/FilmsPage/components/FilmCard";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Hello React</h1>
+    <div className="ui container">
+      <FilmCard />
     </div>
   );
 }

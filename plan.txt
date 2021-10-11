@@ -280,6 +280,8 @@ https://create-react-app.dev/docs/importing-a-component/#absolute-imports
 }
  --------------------------------------------- ////
 
+mkdir -p src/pages/{FilmsPage,HomePage} 
+
 ========================================  Catalog structure 
 У нас будет следующая структура каталогов в  10_FILMS/client
  src/
