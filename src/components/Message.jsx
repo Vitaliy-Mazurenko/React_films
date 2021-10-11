@@ -1,7 +1,9 @@
-const Message = ({ children }) => {
+import PropTypes from "prop-types";
+
+const Message = ({ children, type, color }) => {
   return (
-    <div className="ui icon message">
-      <i className="icon info"></i>
+    <div role="alert" className={`ui icon message ${color}`}>
+      <i className={`icon ${type}`}></i>
       <div className="content">
         <div className="header">{children}</div>
       </div>
@@ -9,4 +11,17 @@ const Message = ({ children }) => {
   );
 };
 
+Message.defaultProps = {
+  type: "info",
+  color: "olive",
+};
+
+Message.propTypes = {
+  type: PropTypes.string,
+  color: PropTypes.string,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
+  ]),
+};
 export default Message;

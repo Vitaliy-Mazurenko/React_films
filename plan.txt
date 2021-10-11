@@ -400,7 +400,7 @@ TypeError: Cannot read property 'price' of undefined
 
 Для этого компонент будет принимать следующие props:
 - тест сообщения
--type =  -> тип иконки сообщения, один из info, bell, star outline
+-type =  -> тип иконки сообщения, один из   info, bell, star outline
           https://semantic-ui.com/elements/icon.html
  - color -> фон блока , один из  olive, blue, orange
          https://semantic-ui.com/collections/message.html
