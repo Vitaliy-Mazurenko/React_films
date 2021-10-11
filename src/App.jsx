@@ -12,11 +12,13 @@ class App extends Component {
     this.setState({ films });
   }
 
+  onReset = () => this.setState({ films });
+
   render() {
     const { films } = this.state;
     return (
       <div className="ui container">
-        <ErrorBoundary>
+        <ErrorBoundary onReset={this.onReset} FallbackComponent={ErrorFallback}>
           <FilmCard film={films[0]} />
         </ErrorBoundary>
       </div>
