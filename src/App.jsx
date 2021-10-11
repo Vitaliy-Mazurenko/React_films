@@ -2,6 +2,7 @@ import { Component } from "react";
 import _sortBy from "lodash/sortBy";
 import FilmsList from "pages/FilmsPage/components/FilmsList";
 import { films } from "data";
+import FilmContext from "contexts/FilmContext";
 
 class App extends Component {
   state = {
@@ -14,14 +15,23 @@ class App extends Component {
 
   sortFilms = (films) => _sortBy(films, ["title"]);
 
-  toggleFeatured = (id) => {};
+  toggleFeatured = (id) =>
+    this.setState(({ films }) => ({
+      films: this.sortFilms(
+        films.map((f) => (f._id === id ? { ...f, featured: !f.featured } : f))
+      ),
+    }));
+
+  value = { toggleFeatured: this.toggleFeatured };
 
   render() {
     const { films } = this.state;
     return (
-      <div className="ui container">
-        <FilmsList films={films} />
-      </div>
+      <FilmContext.Provider value={this.value}>
+        <div className="ui container">
+          <FilmsList films={films} />
+        </div>
+      </FilmContext.Provider>
     );
   }
 }
