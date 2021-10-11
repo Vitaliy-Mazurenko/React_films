@@ -1,5 +1,5 @@
 import { Component } from "react";
-import _sortBy from "lodash/sortBy";
+import _orderBy from "lodash/orderBy";
 import FilmsList from "pages/FilmsPage/components/FilmsList";
 import { films } from "data";
 import FilmContext from "contexts/FilmContext";
@@ -13,7 +13,8 @@ class App extends Component {
     this.setState({ films: this.sortFilms(films) });
   }
 
-  sortFilms = (films) => _sortBy(films, ["title"]);
+  sortFilms = (films) =>
+    _orderBy(films, ["featured", "title"], ["desc", "asc"]);
 
   toggleFeatured = (id) =>
     this.setState(({ films }) => ({
