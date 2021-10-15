@@ -20,9 +20,26 @@ class FilmForm extends Component {
       data: { ...this.state.data, [e.target.name]: e.target.value },
     });
 
-  handleCheckboxChange = (e) => {};
+  handleCheckboxChange = (e) =>
+    this.setState({
+      data: { ...this.state.data, [e.target.name]: e.target.checked },
+    });
 
-  handleNumberChange = (e) => {};
+  handleKeyPress = (e) => {
+    const keyCode = e.keyCode || e.which;
+    const keyValue = String.fromCharCode(keyCode);
+    if (/[\+e-]/.test(keyValue)) e.preventDefault();
+  };
+
+  handleNumberChange = (e) => {
+    let value = e.target.value;
+    const re = /^[1-9]\d*(\.\d{1,2})?$/;
+    if (value === "" || re.test(value)) {
+      this.setState({
+        data: { ...this.state.data, [e.target.name]: value },
+      });
+    }
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -114,6 +131,9 @@ class FilmForm extends Component {
               <input
                 value={data.duration}
                 onChange={this.handleNumberChange}
+                onKeyPress={this.handleKeyPress}
+                min="1"
+                step="0.01"
                 type="number"
                 name="duration"
                 id="duration"
@@ -127,6 +147,9 @@ class FilmForm extends Component {
               <input
                 value={data.price}
                 onChange={this.handleNumberChange}
+                onKeyPress={this.handleKeyPress}
+                min="1"
+                step="0.01"
                 type="number"
                 name="price"
                 id="price"
