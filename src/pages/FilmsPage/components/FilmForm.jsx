@@ -1,4 +1,5 @@
 import { Component } from "react";
+import ImageLoader from "components/ImageLoader";
 
 const inititialData = {
   title: "",
@@ -100,10 +101,11 @@ class FilmForm extends Component {
             {/* left  column  END */}
             {/*  right column START */}
             <div className="six wide column">
-              <img
-                src="http://via.placeholder.com/250x250"
+              <ImageLoader
+                src={data.img}
+                fallbackImg="http://via.placeholder.com/250x250"
                 className="ui image imgfit"
-                alt="myimg"
+                alt={data.title}
               />
             </div>
             {/*  right column END */}
