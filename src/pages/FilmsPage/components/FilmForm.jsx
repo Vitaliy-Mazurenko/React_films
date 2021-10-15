@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { Component, createRef } from "react";
 import ImageLoader from "components/ImageLoader";
 import FormMessage from "components/FormMessage";
@@ -232,7 +233,9 @@ class FilmForm extends Component {
               Save
             </button>
             <div className="or"></div>
-            <span className="ui button">Hide form</span>
+            <span onClick={this.props.hideForm} className="ui button">
+              Hide form
+            </span>
           </div>
           {/* Buttons END */}
         </div>
@@ -241,5 +244,9 @@ class FilmForm extends Component {
     );
   }
 }
+
+FilmForm.propTypes = {
+  hideForm: PropTypes.func.isRequired,
+};
 
 export default FilmForm;
