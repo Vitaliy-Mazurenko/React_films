@@ -1,14 +1,27 @@
+/** @jsxImportSource @emotion/react */
+import { jsx } from "@emotion/react";
+import { useState } from "react";
 import PropTypes from "prop-types";
 import Featured from "components/Featured";
 
 const FilmCard = ({ film }) => {
+  const [show, setShow] = useState(false);
+
+  const handleDescription = () => setShow((x) => !x);
+
   return (
     <div className="ui card">
-      <Featured film={film} />
-      <div className="image">
-        <span className="ui green label ribbon">$ {film.price} </span>
-        <img src={film.img} alt={film.title} />
-      </div>
+      {show ? (
+        <div className="content" css={{ height: "100%" }}>
+          <p>{film.description}</p>
+        </div>
+      ) : (
+        <div className="image">
+          <span className="ui green label ribbon">$ {film.price} </span>
+          <Featured film={film} />
+          <img src={film.img} alt={film.title} />
+        </div>
+      )}
 
       <div className="content">
         <span className="header">{film.title}</span>
@@ -19,6 +32,12 @@ const FilmCard = ({ film }) => {
           </span>
         </div>
       </div>
+
+      <div onClick={handleDescription} className="content clickable">
+        <i className={`icon link eye ${show ? "slash" : ""}`} />
+        {show ? "hide description" : "show description"}
+      </div>
+
       <div className="extra content">
         <div className="ui two buttons">
           <span className="ui green basic button">
